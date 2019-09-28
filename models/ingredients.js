@@ -15,8 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-
-  Ingredients.associate = function (models) {
+  Ingredients.associate = function(models) {
     models.Ingredients.belongsTo(models.Recipes, {
       onDelete: "CASCADE",
       foreignKey: {

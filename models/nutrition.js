@@ -21,8 +21,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: 0
     }
   });
-
-  Nutrition.associate = function (models) {
+  Nutrition.associate = function(models) {
     models.Nutrition.belongsTo(models.Recipes, {
       onDelete: "CASCADE",
       foreignKey: {
