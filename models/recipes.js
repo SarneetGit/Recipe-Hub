@@ -15,9 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  console.log(sequelize)
-
-  Recipes.associate = function (models) {
+  Recipes.associate = function(models) {
     models.Recipes.belongsTo(models.User, {
       onDelete: "CASCADE",
       foreignKey: {
