@@ -1,24 +1,73 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  // Get all user information
+  app.get("/api/users", function(req, res) {
+    // Remember to change the table name
+    db.users.findAll({}).then(function(dbUsers) {
+      res.json(dbUsers);
+    });
+  });
+  // Find specific user information
+  app.get("/api/users/:username", function(req, res) {
+    db.users
+      .findOne({
+        where: {
+          username: req.params.username
+        }
+      })
+      .then(function(dbUsers) {
+        res.json(dbUsers);
+      });
+  });
+  // Add user
+  app.post("/api/users", function(req, res) {
+    db.users.create(req.body).then(user=>{
+      res.status(201).send(user);
+    }).catch(err=>{
+      res.status(400).send(err);
+    })
+  });
+  // Delete the user information
+  app.delete("api/users/:username", function(req, res) {
+    db.users
+      .destroy({ where: { username: req.params.username } })
+      .then(function(dbUsers) {
+        res.json(dbUsers);
+      });
+  });
+
+  app.get("/api/recipes", function(req, res) {
+    db.recipes.findAll({}).then(function(dbRecipes) {
+      res.json(dbRecipes);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  app.get("/api/recipes/:recipes", function(req, res) {
+    db.recipes
+      .findOne({
+        where: {
+          recipes: req.params.recipes
+        }
+      })
+      .then(function(dbRecipes) {
+        res.json(dbRecipes);
+      });
+  });
+  // Add recipes
+  app.post("/api/recipes", function(req, res) {
+    db.recipes.create(req.body).then(function(dbRecipes) {
+      res.json(dbRecipes);
     });
+  });
+  // Delete the user information
+  app.delete("api/recipes/:recipes", function(req, res) {
+    db.recipes
+      .destroy({ where: { recipes: req.params.recipes } })
+      .then(function(dbRecipes) {
+        res.json(dbRecipes);
+      });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+  
 };
