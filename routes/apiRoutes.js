@@ -2,72 +2,94 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all user information
-  app.get("/api/users", function(req, res) {
+  app.get("/api/User", function(req, res) {
     // Remember to change the table name
-    db.users.findAll({}).then(function(dbUsers) {
-      res.json(dbUsers);
+    db.User.findAll({}).then(function(dbUser) {
+      res.json(dbUser);
     });
   });
   // Find specific user information
-  app.get("/api/users/:username", function(req, res) {
-    db.users
-      .findOne({
-        where: {
-          username: req.params.username
-        }
-      })
-      .then(function(dbUsers) {
-        res.json(dbUsers);
-      });
+  app.get("/api/User/:username", function(req, res) {
+    db.User.findOne({
+      where: {
+        username: req.params.username
+      }
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
   });
   // Add user
-  app.post("/api/users", function(req, res) {
-    db.users.create(req.body).then(user=>{
-      res.status(201).send(user);
-    }).catch(err=>{
-      res.status(400).send(err);
-    })
-  });
+  // app.post("/api/User", function(req, res) {
+  //   db.User.create(req.body)
+  //     .then(function(user) {
+  //       res.status(201).send(user);
+  //     })
+  //     .catch(function(err) {
+  //       res.status(400).send(err);
+  //     });
+  // });
   // Delete the user information
-  app.delete("api/users/:username", function(req, res) {
-    db.users
-      .destroy({ where: { username: req.params.username } })
-      .then(function(dbUsers) {
-        res.json(dbUsers);
-      });
+  app.delete("api/User/:username", function(req, res) {
+    db.User.destroy({ where: { username: req.params.username } }).then(function(
+      dbUser
+    ) {
+      res.json(dbUser);
+    });
   });
 
-  app.get("/api/recipes", function(req, res) {
-    db.recipes.findAll({}).then(function(dbRecipes) {
+  app.get("/api/User/:username/Recipes", function(req, res) {
+    db.Recipes.findAll({}, { include: [req.params.username] }).then(function(
+      dbRecipes
+    ) {
       res.json(dbRecipes);
     });
   });
 
-  app.get("/api/recipes/:recipes", function(req, res) {
-    db.recipes
-      .findOne({
+  app.get("/api/:username/:Recipes", function(req, res) {
+    db.Recipes.findOne(
+      {
         where: {
-          recipes: req.params.recipes
+          Recipes: req.params.Recipes
         }
-      })
-      .then(function(dbRecipes) {
-        res.json(dbRecipes);
-      });
+      },
+      { include: [req.params.username] }
+    ).then(function(dbRecipes) {
+      res.json(dbRecipes);
+    });
   });
-  // Add recipes
-  app.post("/api/recipes", function(req, res) {
-    db.recipes.create(req.body).then(function(dbRecipes) {
+  // Add Recipes
+  app.post("/api/Recipes", function(req, res) {
+    db.Recipes.create(req.body).then(function(dbRecipes) {
       res.json(dbRecipes);
     });
   });
   // Delete the user information
-  app.delete("api/recipes/:recipes", function(req, res) {
-    db.recipes
-      .destroy({ where: { recipes: req.params.recipes } })
-      .then(function(dbRecipes) {
-        res.json(dbRecipes);
+  app.delete("api/:username/:Recipes", function(req, res) {
+    db.Recipes.destroy(
+      { where: { Recipes: req.params.Recipes } },
+      { include: [req.params.username] }
+    ).then(function(dbRecipes) {
+      res.json(dbRecipes);
+    });
+  });
+
+  app.post("/api/Ingredients", function(req, res) {
+    db.Ingredients.create(req.body)
+      .then(function(ingredients) {
+        res.status(201).send(ingredients);
+      })
+      .catch(function(err) {
+        res.status(400).send(err);
       });
   });
 
-  
+  app.post("/api/Nutrition", function(req, res) {
+    db.Nutrition.create(req.body)
+      .then(function(nutrition) {
+        res.status(201).send(nutrition);
+      })
+      .catch(function(err) {
+        res.status(400).send(err);
+      });
+  });
 };
