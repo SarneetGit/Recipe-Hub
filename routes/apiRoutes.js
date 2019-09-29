@@ -37,7 +37,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/User/:username/Recipes", function(req, res) {
+  app.get("/api/User/Recipes/:username", function(req, res) {
     db.Recipes.findAll({}, { include: [req.params.username] }).then(function(
       dbRecipes
     ) {
