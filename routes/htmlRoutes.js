@@ -6,7 +6,8 @@ module.exports = function(app) {
     db.User.findAll({}).then(function(toBeDefinedLater) {
       res.render("index", {
         msg: "Welcome!",
-        examples: [{ id: 1, text: "test" }, { id: 2, text: "test2" }]
+        examples: [{ id: 1, text: "test" }, { id: 2, text: "test2" }],
+        tbd: toBeDefinedLater
       });
     });
   });
