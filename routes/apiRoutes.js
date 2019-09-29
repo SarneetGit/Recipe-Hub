@@ -1,7 +1,11 @@
 var db = require("../models");
+// const passport = require("../config/passport");
+const passport = require("passport");
+const requireSignAuth = passport.authenticate("local", { session: false });
 
 module.exports = function(app) {
   app.post("/api/users", (req, res) => {
+    console.log(req.body);
     db.User.create(req.body)
       .then(user => {
         res.status(201).send(user);
@@ -11,6 +15,14 @@ module.exports = function(app) {
       });
   });
 
+  app.post("/api/login", requireSignAuth, (req, res) => {
+    console.log(req.user);
+    if (req.user) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(400);
+    }
+  });
   // Get all examples
   app.get("/api/examples", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
