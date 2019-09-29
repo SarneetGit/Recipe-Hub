@@ -1,22 +1,46 @@
 module.exports = function(sequelize, DataTypes) {
   var Recipes = sequelize.define("Recipes", {
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
-    recipeUrl: {
-      type: DataTypes.STRING,
+    servings: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         len: [1]
       }
+    },
+    image: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [1]
+      }
+    },
+    vegetarian: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    glutenFree: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    spoonacularScore: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    sourceUrl: {
+      type: DataTypes.STRING,
+      defaultValue: "Not Available"
+    },
+    readyInMinutes: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
-  console.log(sequelize);
-
   Recipes.associate = function(models) {
     models.Recipes.belongsTo(models.User, {
       onDelete: "CASCADE",

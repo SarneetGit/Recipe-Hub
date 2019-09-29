@@ -1,4 +1,7 @@
 var db = require("../models");
+// const passport = require("../config/passport");
+const passport = require("passport");
+const requireSignAuth = passport.authenticate("local", { session: false });
 
 module.exports = function(app) {
   // Get all user information
