@@ -2,17 +2,13 @@ module.exports = function(sequelize, DataTypes) {
   var Nutrition = sequelize.define("Nutrition", {
     calories: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
+      defaultValue: 0
     },
     carbs: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       defaultValue: 0
     },
-    fats: {
+    fat: {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },

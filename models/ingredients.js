@@ -7,7 +7,12 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    ingredienteUrl: {
+    image: {
+      type: DataTypes.STRING,
+      defaultValue:
+        "https://cdn3.iconfinder.com/data/icons/random-4/96/food-vegetables-groceries-cook-shopping-bag-512.png"
+    },
+    original: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
