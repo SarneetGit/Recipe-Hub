@@ -23,6 +23,39 @@ module.exports = function(app) {
       res.sendStatus(400);
     }
   });
+
+  app.post("/api/testCreates", (req, res) => {
+    let obj = req.body;
+    console.log({
+      title: obj.title,
+      servings: obj.servings,
+      image: obj.image,
+      vegetarian: obj.vegetarian,
+      glutenFree: obj.glutenFree,
+      spoonacularScore: obj.spoonacularScore,
+      sourceUrl: obj.sourceUrl,
+      readyInMinutes: obj.readyInMinutes,
+      userid: 1
+    });
+    db.Recipes.create({
+      title: obj.title,
+      servings: obj.servings,
+      image: obj.image,
+      vegetarian: obj.vegetarian,
+      glutenFree: obj.glutenFree,
+      spoonacularScore: obj.spoonacularScore,
+      sourceUrl: obj.sourceUrl,
+      readyInMinutes: obj.readyInMinutes,
+      userid: 1
+    })
+      .then(recipes => {
+        res.status(201).send(recipes);
+      })
+      .catch(err => {
+        res.status(400).send(err);
+      });
+  });
+
   // Get all examples
   app.get("/api/examples", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
