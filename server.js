@@ -1,11 +1,11 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-const passport = require("passport");
+// const passport = require("passport");
 
 var db = require("./models");
-const passportStrat = require("./config/passport");
-passportStrat(passport);
+// const passportStrat = require("./config/passport");
+// passportStrat(passport);
 var app = express();
 var PORT = process.env.PORT || 3000;
 
