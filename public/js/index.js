@@ -98,7 +98,16 @@ $("#next").on("click", function() {
   let firstForm = {
     title: $("#title")
       .val()
+      .trim(),
+    servings: $("#servings")
+      .val()
       .trim()
+    image: $("#img").val().trim()
+    vegetarian: $("#servings")
+      .val()
+      .trim()
+
+
   };
   console.log(firstForm);
 });
