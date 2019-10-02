@@ -24,9 +24,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    glutenFree: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+    aggregateLikes: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     },
     spoonacularScore: {
       type: DataTypes.INTEGER,

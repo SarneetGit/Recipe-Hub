@@ -1,81 +1,281 @@
+/* eslint-disable no-unused-vars */
 var db = require("../models");
 // const passport = require("../config/passport");
 const passport = require("passport");
 const requireSignAuth = passport.authenticate("local", { session: false });
+const axois = require("axios");
 
 module.exports = function(app) {
   app.post("/api/users", (req, res) => {
     console.log(req.body);
     db.User.create(req.body)
       .then(user => {
-        res.status(201).send(user);
+        res.sendStatus(201).send(user);
       })
       .catch(err => {
-        res.status(400).send(err);
+        res.sendStatus(400).send(err);
       });
   });
 
   app.post("/api/login", requireSignAuth, (req, res) => {
     console.log(req.user);
     if (req.user) {
-      res.sendStatus(200);
+      res.sendsendStatus(200);
     } else {
-      res.sendStatus(400);
+      res.sendsendStatus(400);
     }
   });
 
+  //Don't think I need this anymore
   app.post("/api/testCreates", (req, res) => {
     let obj = req.body;
-    console.log({
+    var objToSendRecipes = {
       title: obj.title,
       servings: obj.servings,
       image: obj.image,
       vegetarian: obj.vegetarian,
-      glutenFree: obj.glutenFree,
+      aggregateLikes: obj.aggregateLikes,
       spoonacularScore: obj.spoonacularScore,
       sourceUrl: obj.sourceUrl,
       readyInMinutes: obj.readyInMinutes,
-      userid: 1
-    });
-    db.Recipes.create({
-      title: obj.title,
-      servings: obj.servings,
-      image: obj.image,
-      vegetarian: obj.vegetarian,
-      glutenFree: obj.glutenFree,
-      spoonacularScore: obj.spoonacularScore,
-      sourceUrl: obj.sourceUrl,
-      readyInMinutes: obj.readyInMinutes,
-      userid: 1
-    })
+      UserId: 1
+    };
+    db.Recipes.create(objToSendRecipes)
       .then(recipes => {
-        res.status(201).send(recipes);
+        let dbRecipeID = recipes.dataValues.id;
+        var ingredientsList = [];
+
+        for (let i of obj.extendedIngredients) {
+          let iter = {
+            RecipeId: dbRecipeID,
+            name: i.name,
+            image: "https://spoonacular.com/cdn/ingredients_100x100/" + i.image,
+            original: i.original
+          };
+          ingredientsList.push(iter);
+        }
+        db.Ingredients.bulkCreate(ingredientsList)
+          .then(_ingredients => {
+            db.Nutrition.create({
+              RecipeId: dbRecipeID,
+              calories: obj.nutrition.nutrients[0].amount,
+              fat: obj.nutrition.nutrients[1].amount,
+              carbs: obj.nutrition.nutrients[3].amount,
+              protein: obj.nutrition.nutrients[7].amount
+            })
+              .then(_nutrition => {
+                var instructionsList = [];
+                for (let i in obj.analyzedInstructions[0].steps) {
+                  let instructionsIter = {
+                    RecipeId: dbRecipeID,
+                    Number: obj.analyzedInstructions[0].steps[i].number,
+                    Step: obj.analyzedInstructions[0].steps[i].step
+                  };
+                  instructionsList.push(instructionsIter);
+                  // console.log(
+                  //   obj.analyzedInstructions[0].steps[i].number +
+                  //     "\n" +
+                  //     obj.analyzedInstructions[0].steps[i].step
+                  // );
+                }
+                console.log(instructionsList);
+                db.Instructions.bulkCreate(instructionsList)
+                  .then(_instructions => {
+                    res.sendStatus(201);
+                  })
+                  .catch(err => {
+                    res.sendStatus(400).send(err);
+                  });
+              })
+              .catch(err => {
+                res.sendStatus(400).send(err);
+              });
+          })
+          .catch(err => {
+            res.sendStatus(400).send(err);
+          });
       })
       .catch(err => {
-        res.status(400).send(err);
+        res.sendStatus(400).send(err);
       });
   });
 
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  //Sends the results of the search call back to the page, user will be prompted with each title
+  //(they can select which one meets their interest) and it will be passed to the call below
+  //1)User Inputs Search paramters and clicks enter
+  //2)Server makes ajax call, and sends back a list of options that matched search
+  app.post("/api/testAjaxCall", (req, res) => {
+    let search = req.body.search;
+    axois
+      .get(
+        "https://api.spoonacular.com/recipes/search?apiKey=5ced0faa528f4a91a6f2ee1892c4f789&query=" +
+          search
+      )
+      .then(response => {
+        let searchResultNames = [];
+        for (let i of response.data.results) {
+          let objAppend = { id: i.id, title: i.title };
+          searchResultNames.push(objAppend);
+        }
+        console.log(searchResultNames);
+        res.json(searchResultNames);
+      });
+  });
+
+  //Builds of call above, user selects which recipe they would like to see and pass the ID below
+  //1) User clicks one of the options
+  //2) Server recieves ID and returns all relevent values required to show (This is our standard data form)
+  app.post("/api/testShowBigCall", (req, res) => {
+    let id = req.body.id;
+    axois
+      .get(
+        `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=5ced0faa528f4a91a6f2ee1892c4f789`
+      )
+      .then(response => {
+        let obj = response.data;
+        var ingredientsListObj = [];
+        var instructionsListObj = [];
+        var recipesObj = {
+          title: obj.title,
+          servings: obj.servings,
+          image: obj.image,
+          vegetarian: obj.vegetarian,
+          aggregateLikes: obj.aggregateLikes,
+          spoonacularScore: obj.spoonacularScore,
+          sourceUrl: obj.sourceUrl,
+          readyInMinutes: obj.readyInMinutes,
+          UserId: 1
+        };
+        for (let i of obj.extendedIngredients) {
+          let iter = {
+            RecipeId: id,
+            name: i.name,
+            image: "https://spoonacular.com/cdn/ingredients_100x100/" + i.image,
+            original: i.original
+          };
+          ingredientsListObj.push(iter);
+        }
+        let nutritionObj = {
+          RecipeId: id,
+          calories: obj.nutrition.nutrients[0].amount,
+          fat: obj.nutrition.nutrients[1].amount,
+          carbs: obj.nutrition.nutrients[3].amount,
+          protein: obj.nutrition.nutrients[7].amount
+        };
+        for (let i in obj.analyzedInstructions[0].steps) {
+          let instructionsIter = {
+            RecipeId: id,
+            Number: obj.analyzedInstructions[0].steps[i].number,
+            Step: obj.analyzedInstructions[0].steps[i].step
+          };
+          instructionsListObj.push(instructionsIter);
+        }
+        res.json({
+          recipesObj: recipesObj,
+          ingredientsListObj: ingredientsListObj,
+          nutritionObj: nutritionObj,
+          instructionsListObj: instructionsListObj
+        });
+        console.log(
+          recipesObj,
+          ingredientsListObj,
+          nutritionObj,
+          instructionsListObj
+        );
+      });
+  });
+
+  //If a user decides at any point to save a recipe, we pass the ID to this call and it will write to DB
+  //1) User likes a recipe and decides to click save
+  app.post("/api/testSaveBigCall", (req, res) => {
+    let id = req.body.id;
+    axois
+      .get(
+        `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=5ced0faa528f4a91a6f2ee1892c4f789`
+      )
+      .then(response => {
+        let obj = response.data;
+        var objToSendRecipes = {
+          title: obj.title,
+          servings: obj.servings,
+          image: obj.image,
+          vegetarian: obj.vegetarian,
+          aggregateLikes: obj.aggregateLikes,
+          spoonacularScore: obj.spoonacularScore,
+          sourceUrl: obj.sourceUrl,
+          readyInMinutes: obj.readyInMinutes,
+          UserId: 1
+        };
+        db.Recipes.create(objToSendRecipes)
+          .then(recipes => {
+            let dbRecipeID = recipes.dataValues.id;
+            var ingredientsList = [];
+
+            for (let i of obj.extendedIngredients) {
+              let iter = {
+                RecipeId: dbRecipeID,
+                name: i.name,
+                image:
+                  "https://spoonacular.com/cdn/ingredients_100x100/" + i.image,
+                original: i.original
+              };
+              ingredientsList.push(iter);
+            }
+            db.Ingredients.bulkCreate(ingredientsList)
+              .then(_ingredients => {
+                db.Nutrition.create({
+                  RecipeId: dbRecipeID,
+                  calories: obj.nutrition.nutrients[0].amount,
+                  fat: obj.nutrition.nutrients[1].amount,
+                  carbs: obj.nutrition.nutrients[3].amount,
+                  protein: obj.nutrition.nutrients[7].amount
+                })
+                  .then(_nutrition => {
+                    var instructionsList = [];
+                    for (let i in obj.analyzedInstructions[0].steps) {
+                      let instructionsIter = {
+                        RecipeId: dbRecipeID,
+                        Number: obj.analyzedInstructions[0].steps[i].number,
+                        Step: obj.analyzedInstructions[0].steps[i].step
+                      };
+                      instructionsList.push(instructionsIter);
+                    }
+                    console.log(instructionsList);
+                    db.Instructions.bulkCreate(instructionsList)
+                      .then(_instructions => {
+                        res.sendStatus(201);
+                      })
+                      .catch(err => {
+                        res.sendStatus(400).send(err);
+                      });
+                  })
+                  .catch(err => {
+                    res.sendStatus(400).send(err);
+                  });
+              })
+              .catch(err => {
+                res.sendStatus(400).send(err);
+              });
+          })
+          .catch(err => {
+            res.sendStatus(400).send(err);
+          });
+      });
+  });
+
+  // If user clicks saved recipes tab, the page on load will do a get request
+  //1) Get all saved recipes (for a given user)
+  //2) Server side code will display a recipe card for each
+  app.get("/api/saved", function(_req, res) {
+    db.Recipes.findAll({}).then(function(recipes) {
+      res.json(recipes);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-
-  // Delete an example by id
+  // Delete recipe by ID
   app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
+    db.Recipes.destroy({ where: { id: req.params.id } }).then(function(recipe) {
+      res.json(recipe);
     });
   });
 };
