@@ -1,3 +1,6 @@
+body {
+  background-color: transparent;
+}
 .list-group-item {
   line-height: 2.5;
 }
@@ -25,4 +28,10 @@ html {
 img {
   opacity: 0.5;
   filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+.searchCon {
+  position: absolute;
+  top:  50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
