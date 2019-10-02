@@ -106,8 +106,6 @@
 //     vegetarian: $("#servings")
 //       .val()
 //       .trim()
-
-
 //   };
 //   console.log(firstForm);
 // });
