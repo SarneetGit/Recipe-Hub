@@ -93,21 +93,21 @@
 // $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 //TESTING
-$("#next").on("click", function() {
-  event.preventDefault();
-  let firstForm = {
-    title: $("#title")
-      .val()
-      .trim(),
-    servings: $("#servings")
-      .val()
-      .trim()
-    image: $("#img").val().trim()
-    vegetarian: $("#servings")
-      .val()
-      .trim()
+// $("#next").on("click", function() {
+//   event.preventDefault();
+//   let firstForm = {
+//     title: $("#title")
+//       .val()
+//       .trim(),
+//     servings: $("#servings")
+//       .val()
+//       .trim()
+//     image: $("#img").val().trim()
+//     vegetarian: $("#servings")
+//       .val()
+//       .trim()
 
 
-  };
-  console.log(firstForm);
-});
+//   };
+//   console.log(firstForm);
+// });
