@@ -109,3 +109,62 @@
 //   };
 //   console.log(firstForm);
 // });
+//testing the instructions
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  };
+}
+let tempTask = [];
+let todo = document.getElementById("todo");
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  let inputValue = document.getElementById("myInput").value;
+  let numb = document.getElementById("numb").value;
+  //   console.log(inputValue, numb);
+  tempTask.push({ number: numb, step: inputValue });
+  //   todo.remove();
+  tempTask.forEach(value => {
+    console.log(value);
+    todo.innerHTML += value.taskID + " - " + value.inputText + "<br/>";
+  });
+  console.log(tempTask);
+  //   var sendSarneet = [];
+  //   sendSarneet.push({number})
+  //   var ol = document.createElement("ol");
+  //   var inputValue = document.getElementById("myInput").value;
+  //   var input = document.createTextNode(inputValue);
+  //   ol.appendChild(t);
+  //   if (inputValue === "") {
+  //     alert("Please add instruction!");
+  //   } else {
+  //     document.getElementById("myUL").appendChild(ol);
+  //   }
+  //   document.getElementById("myInput").value = "";
+
+  //   var span = document.createElement("SPAN");
+  //   var txt = document.createTextNode("\u00D7");
+  //   span.className = "close";
+  //   span.appendChild(txt);
+  //   li.appendChild(span);
+
+  //   for (i = 0; i < close.length; i++) {
+  //     close[i].onclick = function() {
+  //       var div = this.parentElement;
+  //       div.style.display = "none";
+  //     };
+  //   }
+}
