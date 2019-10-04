@@ -72,7 +72,7 @@ $("document").ready(function() {
               <i class="far fa-clock text-info"></i> ${recipe.readyInMinutes} minutes
               <i class="fas fa-users text-info"></i> ${recipe.servings} portions
             </small>
-            <p class="card-text">Loren Ipsom Loren Ipsom Loren Ipsom Loren Ipsom Loren Ipsom.</p>
+            <p class="card-text text-center">  Calories:${nutrition.calories} | Carbohydrates:${nutrition.carbs}    Fats:${nutrition.fat} | Protein:${nutrition.protein}</p>
             <span>
                 <a href="#" class="btn btn-info btn-md float-left">Instructions</a>
                 <a href="#" class="btn btn-info btn-md float-right">Ingredients</a>
@@ -92,35 +92,35 @@ $("document").ready(function() {
     });
   });
 
-//   $("body").on("click", ".recipeOption", function(event) {
-//     // Make sure to preventDefault on a submit event.
-//     // event.preventDefault();
-//     console.log("Submission Clicked");
+  //   $("body").on("click", ".recipeOption", function(event) {
+  //     // Make sure to preventDefault on a submit event.
+  //     // event.preventDefault();
+  //     console.log("Submission Clicked");
 
-//     var newBurger = {
-//       name: $("#bughaName")
-//         .val()
-//         .trim()
-//     };
+  //     var newBurger = {
+  //       name: $("#bughaName")
+  //         .val()
+  //         .trim()
+  //     };
 
-//     if (newBurger.name === "") {
-//       alertify
-//         .alert()
-//         .set("message", "Please enter a valid burger name.")
-//         .setHeader("Invalid Burger Name!")
-//         .show();
-//     } else {
-//       // Send the POST request.
-//       $.ajax("/api/burgers", {
-//         type: "POST",
-//         data: newBurger
-//       }).then(function() {
-//         console.log("New Burger Created");
-//         // Reload the page to get the updated list
-//         location.reload();
-//       });
-//     }
-//   });
+  //     if (newBurger.name === "") {
+  //       alertify
+  //         .alert()
+  //         .set("message", "Please enter a valid burger name.")
+  //         .setHeader("Invalid Burger Name!")
+  //         .show();
+  //     } else {
+  //       // Send the POST request.
+  //       $.ajax("/api/burgers", {
+  //         type: "POST",
+  //         data: newBurger
+  //       }).then(function() {
+  //         console.log("New Burger Created");
+  //         // Reload the page to get the updated list
+  //         location.reload();
+  //       });
+  //     }
+  //   });
   //   // Send the PUT request.
   //   $.ajax("/api/burgers/", {
   //     type: "PUT",
