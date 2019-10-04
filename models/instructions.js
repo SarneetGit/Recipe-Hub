@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     Step: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       defaultValue: 0
     }

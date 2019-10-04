@@ -2,7 +2,7 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $("document").ready(function() {
   console.log("Loaded");
-  $("#search").on("click", function(_event) {
+  $("#submitBtn").on("click", function(_event) {
     var searchCriteria = {
       search: $("#search")
         .val()
@@ -20,43 +20,107 @@ $("document").ready(function() {
         type: "POST",
         data: searchCriteria
       }).then(function(resp) {
+        $("#search").val("");
         // console.log("New Burger Created");
         // Reload the page to get the updated list
         console.log(resp);
-        location.reload();
+        $("#resultsCard").removeClass("d-none");
+        for (let i of resp) {
+          console.log(i.id, i.title);
+          $("#searchResultAppend").append(`
+            <li class="list-group-item d-flex justify-content-between align-items-center recipeOption" data-id="${i.id}">
+            ${i.title}
+            </li>
+            `);
+        }
       });
     }
   });
 
-  $("#createBugha").on("click", function(event) {
-    // Make sure to preventDefault on a submit event.
-    // event.preventDefault();
-    console.log("Submission Clicked");
-
-    var newBurger = {
-      name: $("#bughaName")
-        .val()
-        .trim()
-    };
-
-    if (newBurger.name === "") {
-      alertify
-        .alert()
-        .set("message", "Please enter a valid burger name.")
-        .setHeader("Invalid Burger Name!")
-        .show();
-    } else {
-      // Send the POST request.
-      $.ajax("/api/burgers", {
-        type: "POST",
-        data: newBurger
-      }).then(function() {
-        console.log("New Burger Created");
-        // Reload the page to get the updated list
-        location.reload();
-      });
-    }
+  $("body").on("click", ".recipeOption", function(_event) {
+    console.log("recipe name was clicked");
+    $("#resultsCard").addClass("d-none");
+    var id = $(this).data("id");
+    console.log(id);
+    // Send the POST request.
+    $.ajax("/api/searchRecipe", {
+      type: "POST",
+      data: { id: id }
+    }).then(function(resp) {
+      console.log(resp);
+      let recipe = resp.recipesObj;
+      let nutrition = resp.nutritionObj;
+      let instructions = resp.instructionsListObj;
+      let ingredients = resp.ingredientsListObj;
+      let isVegetarian = "d-none";
+      if (recipe.vegetarian) {
+        isVegetarian = "";
+      }
+      console.log(recipe.title);
+      $(".container").append(`
+    <div class="row" style="margin-bottom:10vh;">
+      <div class="col-lg-4 offset-4">
+        <div class="card">
+          <div class="view">
+            <img src="${recipe.image}" class="card-img-top" alt="photo">
+            <a href="${recipe.sourceUrl}" target="_blank">
+            </a>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title" style="color:black;">${recipe.title}</h4>
+            <small class="text-muted cat">
+              <i class="far fa-clock text-info"></i> ${recipe.readyInMinutes} minutes
+              <i class="fas fa-users text-info"></i> ${recipe.servings} portions
+            </small>
+            <p class="card-text">Loren Ipsom Loren Ipsom Loren Ipsom Loren Ipsom Loren Ipsom.</p>
+            <span>
+                <a href="#" class="btn btn-info btn-md float-left">Instructions</a>
+                <a href="#" class="btn btn-info btn-md float-right">Ingredients</a>
+            </span>
+          </div>
+          <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+            <div class="views">  
+            </div>
+            <div class="stats">
+              <span class=""><i class="far fa-thumbs-up"></i> ${recipe.aggregateLikes}</span>
+              <span class="${isVegetarian}"><i class="fas fa-leaf"></i> Vegeterian</span>
+            </div>
+          </div>
+        </div>
+      </div>      
+  </div>`);
+    });
   });
+
+//   $("body").on("click", ".recipeOption", function(event) {
+//     // Make sure to preventDefault on a submit event.
+//     // event.preventDefault();
+//     console.log("Submission Clicked");
+
+//     var newBurger = {
+//       name: $("#bughaName")
+//         .val()
+//         .trim()
+//     };
+
+//     if (newBurger.name === "") {
+//       alertify
+//         .alert()
+//         .set("message", "Please enter a valid burger name.")
+//         .setHeader("Invalid Burger Name!")
+//         .show();
+//     } else {
+//       // Send the POST request.
+//       $.ajax("/api/burgers", {
+//         type: "POST",
+//         data: newBurger
+//       }).then(function() {
+//         console.log("New Burger Created");
+//         // Reload the page to get the updated list
+//         location.reload();
+//       });
+//     }
+//   });
   //   // Send the PUT request.
   //   $.ajax("/api/burgers/", {
   //     type: "PUT",

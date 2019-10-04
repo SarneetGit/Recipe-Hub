@@ -7,6 +7,7 @@ body {
 .text {
   color: black;
 }
+
 html {
   background: url("../images/bg.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -16,22 +17,370 @@ html {
   height: 100%;
   width: 100%;
 }
+
 /* body {
   background-image: url("../images/bg.jpg");
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
 } */
+
 .text-align {
   text-align: left;
 }
+
 img {
   opacity: 0.5;
   filter: alpha(opacity=50); /* For IE8 and earlier */
 }
-.searchCon {
-  position: absolute;
-  top:  50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+
+*
+
+{
+
+    outline: none;
+
 }
+
+ 
+
+body
+
+{
+
+    margin: 0;
+
+    color: white;
+
+}
+
+ 
+
+.tb
+
+{
+
+    display: table;
+
+    width: 100%;
+
+}
+
+ 
+
+.td
+
+{
+
+    display: table-cell;
+
+    vertical-align: middle;
+
+}
+
+ 
+
+input, button
+
+{
+
+    color: #fff;
+
+    font-family: Nunito;
+
+    padding: 0;
+
+    margin: 0;
+
+    border: 0;
+
+    background-color: transparent;
+
+}
+
+#logoImage{
+  height: 60px;
+  width: 60px;
+} 
+
+#cover
+
+{
+
+    width: 85%;
+
+    padding: 5px;
+
+    margin: -83px auto 0 auto;
+
+    background-color: #335B8E;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 40px #335B8E, 0 0 0 20px #B7DBDB;
+
+    transform: scale(0.6);
+
+}
+
+ 
+
+form
+
+{
+
+    height: 96px;
+
+}
+
+ 
+
+input[type="text"]
+
+{
+
+    width: 100%;
+
+    height: 96px;
+
+    font-size: 60px;
+
+    line-height: 1;
+
+}
+
+ 
+
+input[type="text"]::placeholder
+
+{
+
+    color: white;
+
+}
+
+ 
+
+#s-cover
+
+{
+
+    width: 1px;
+
+    padding-left: 35px;
+
+}
+
+ 
+
+#submitBtn
+
+{
+
+    position: relative;
+
+    display: block;
+
+    width: 84px;
+
+    height: 96px;
+
+    cursor: pointer;
+
+}
+
+ 
+
+#s-circle
+
+{
+
+    position: relative;
+
+    top: -8px;
+
+    left: 0;
+
+    width: 69px;
+
+    height: 69px;
+
+    margin-top: 0;
+
+    border-width: 15px;
+
+    border: 15px solid #fff;
+
+    background-color: transparent;
+
+    border-radius: 50%;
+
+    transition: 0.5s ease all;
+
+}
+
+ 
+
+#submitBtn span
+
+{
+
+    position: absolute;
+
+    top: 68px;
+
+    left: 43px;
+
+    display: block;
+
+    width: 45px;
+
+    height: 15px;
+
+    background-color: transparent;
+
+    border-radius: 10px;
+
+    transform: rotateZ(52deg);
+
+    transition: 0.5s ease all;
+
+}
+
+ 
+
+#submitBtn span:before, #submitBtn span:after
+
+{
+
+    content: '';
+
+    position: absolute;
+
+    bottom: 0;
+
+    right: 0;
+
+    width: 45px;
+
+    height: 15px;
+
+    background-color: #fff;
+
+    border-radius: 10px;
+
+    transform: rotateZ(0);
+
+    transition: 0.5s ease all;
+
+}
+
+ 
+
+#s-cover:hover #s-circle
+
+{
+
+    top: -1px;
+
+    width: 67px;
+
+    height: 15px;
+
+    border-width: 0;
+
+    background-color: #fff;
+
+    border-radius: 20px;
+
+}
+
+ 
+
+#s-cover:hover span
+
+{
+
+    top: 50%;
+
+    left: 56px;
+
+    width: 25px;
+
+    margin-top: -9px;
+
+    transform: rotateZ(0);
+
+}
+
+ 
+
+#s-cover:hover button span:before
+
+{
+
+    bottom: 11px;
+
+    transform: rotateZ(52deg);
+
+}
+
+ 
+
+#s-cover:hover button span:after
+
+{
+
+    bottom: -11px;
+
+    transform: rotateZ(-52deg);
+
+}
+
+#s-cover:hover button span:before, #s-cover:hover button span:after
+
+{
+
+    right: -6px;
+
+    width: 40px;
+
+    background-color: #fff;
+
+}
+
+ 
+
+.recipeOption {
+
+  margin-top: 14px;
+
+  transition: transform 0.3s ease, margin 0.3s ease;
+
+}
+
+ 
+
+.recipeOption:hover {
+
+  transform: scale(1.05);
+
+  cursor: pointer;
+
+}
+
+.tenbyten {
+  margin-top: 5vh; margin-bottom: 5vh;
+}
+
+/* .poiImages {
+
+  width: 300px;
+
+  height: 175px;
+
+  object-fit: contain;
+
+  padding-left: 10px;
+
+} */

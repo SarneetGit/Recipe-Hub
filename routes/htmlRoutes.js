@@ -14,7 +14,7 @@ module.exports = function(app) {
 
   // Load example page and pass in an example by id
   app.get("/search", function(req, res) {
-    res.render("search");
+    res.render("search", { name: "Benjamin" });
     // db.Example.findOne({ where: { id: req.params.id } }).then(function(
     //   dbExample
     // ) {
