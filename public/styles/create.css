@@ -1,56 +1,62 @@
- /* Navbar */
- nav{
-    font-family: 'Lato', sans-serif;
-  }
-  nav>a>img{
-    width:80px;
-    height:80px;
-  }
-  nav>button{
-    font-weight: 400
-  }
-  #navbarSupportedContent>ul>li{
-    font-weight:300;
-  }
-  /* Search Body */
-  strong{
-    font-size:50px;
-    font-weight:400;
-    font-family: 'Lato', sans-serif;
-  }
-  form{
-    margin-left:200px;
-  }
-  form input{
-    font-family: 'Lato', sans-serif;
-  }
-  #nextBtn{
-    font-family: 'Open Sans', sans-serif;
-    width:250px;
-    margin-left:-150px;
-    font-weight:bold;
-  }
-  .head_text{
-    z-index: 999;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding-left: 15%;
-  }
-  .head_text h1{
-    font-size:70px;
-    font-weight:450;
-    font-family: 'Rubik', sans-serif;
-
-  }
-  .head_text h3{
-    font-size:50px;
-    font-weight:450;
-    font-family: 'Rubik', sans-serif;
-
-  }
-  #carouselExampleIndicators img{
-    height:650px;
-    object-fit: cover;
-  }
-
+/* Navbar */
+nav {
+  font-family: "Lato", sans-serif;
+}
+nav > a > img {
+  width: 80px;
+  height: 80px;
+}
+nav > button {
+  font-weight: 400;
+}
+#navbarSupportedContent > ul > li {
+  font-weight: 300;
+}
+/* Search Body */
+strong {
+  font-size: 50px;
+  font-weight: 400;
+  font-family: "Lato", sans-serif;
+}
+form {
+  margin-left: 200px;
+}
+form input {
+  font-family: "Lato", sans-serif;
+}
+#nextBtn {
+  font-family: "Open Sans", sans-serif;
+  width: 250px;
+  margin-left: -150px;
+  font-weight: bold;
+}
+.head_text {
+  z-index: 999;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-left: 15%;
+}
+.head_text h1 {
+  font-size: 70px;
+  font-weight: 450;
+  font-family: "Rubik", sans-serif;
+}
+.head_text h3 {
+  font-size: 50px;
+  font-weight: 450;
+  font-family: "Rubik", sans-serif;
+}
+#carouselExampleIndicators img {
+  height: 650px;
+  object-fit: cover;
+}
+form input {
+  margin-top: 8px;
+  border-radius: 10px;
+}
+form select {
+  margin-top: 8px;
+  border-radius: 10px;
+  font-family: "Lato", sans-serif;
+}
