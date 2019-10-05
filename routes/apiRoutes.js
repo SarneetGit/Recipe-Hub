@@ -104,11 +104,11 @@ module.exports = function(app) {
   //(they can select which one meets their interest) and it will be passed to the call below
   //1)User Inputs Search paramters and clicks enter
   //2)Server makes ajax call, and sends back a list of options that matched search
-  app.post("/api/testAjaxCall", (req, res) => {
+  app.post("/api/search", (req, res) => {
     let search = req.body.search;
     axois
       .get(
-        "https://api.spoonacular.com/recipes/search?apiKey=5ced0faa528f4a91a6f2ee1892c4f789&query=" +
+        "https://api.spoonacular.com/recipes/search?apiKey=5ced0faa528f4a91a6f2ee1892c4f789&number=5&query=" +
           search
       )
       .then(response => {
@@ -118,6 +118,7 @@ module.exports = function(app) {
           searchResultNames.push(objAppend);
         }
         console.log(searchResultNames);
+        // res.render("search", { searchResultNames: searchResultNames });
         res.json(searchResultNames);
       });
   });
@@ -125,7 +126,7 @@ module.exports = function(app) {
   //Builds of call above, user selects which recipe they would like to see and pass the ID below
   //1) User clicks one of the options
   //2) Server recieves ID and returns all relevent values required to show (This is our standard data form)
-  app.post("/api/testShowBigCall", (req, res) => {
+  app.post("/api/searchRecipe", (req, res) => {
     let id = req.body.id;
     axois
       .get(
