@@ -173,6 +173,8 @@
 // //NEXT BUTTON
 $(document).ready(function() {
   $("#div2").hide();
+  $("#removeButton").hide();
+  //   $("#instructionsTable").hide();
   $("#next").on("click", function() {
     $("#div2").show();
     $("#div1").hide();
@@ -181,4 +183,34 @@ $(document).ready(function() {
     $("#div2").hide();
     $("#div1").show();
   });
+  $("#add").on("click", function() {
+    $("#instructionsTable").show();
+  });
+});
+// function add() {
+//   var instruction = document.getElementById("myInput").value;
+//   document.getElementById("myInput").innerHTML = instruction;
+// }
+//add ingredfients
+
+$("#addIngred").on("click", function() {
+  let ingredients = $("#ingredients")
+    .val()
+    .trim();
+  $("#ingredientsTable tbody").append(`<tr>
+    <td class="ingredients">${ingredients}</td>
+  </tr>`);
+});
+
+//add instructions
+var count = 0;
+$("#add").on("click", function() {
+  count++;
+  let instruction = $("#instructions")
+    .val()
+    .trim();
+  $("#instructionsTable tbody").append(`<tr>
+    <th class="countID">${count}</th>
+    <td class="instruction">${instruction}</td>
+  </tr>`);
 });
