@@ -266,7 +266,6 @@ module.exports = function(app) {
           });
       });
   });
-
   // If user clicks saved recipes tab, the page on load will do a get request
   //1) Get all saved recipes (for a given user)
   //2) Server side code will display a recipe card for each

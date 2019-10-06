@@ -34,23 +34,25 @@
     </ul>
   </div>
 </nav>
-<div class="containe">
+<!--/.Navbar -->
+<h1> My name is: {{name}}</h1>
+<div class="container">
     <div class="row" style="margin-bottom:10vh;">
         {{#each recipes}}
         <div class="col-lg-4 offset-4" style="padding:20px;">
             <div class="card">
             <div class="view">
-                <img src="{{image}}" class="card-img-top" alt="photo">
-                <a href="{{sourceUrl}}" target="_blank">
+                <img src="{{Recipe.image}}" alt="Test" class="card-img-top" alt="photo">
+                <a href="{{Recipe.sourceUrl}}" alt="Test" target="_blank">
                 </a>
             </div>
             <div class="card-body">
                 <h4 class="card-title" style="color:black;">{{title}}</h4>
                 <small class="text-muted cat">
-                <i class="far fa-clock text-info"></i> {{readyInMinutes}} minutes
-                <i class="fas fa-users text-info"></i> {{servings}} portions
+                <i class="far fa-clock text-info"></i> {{Recipe.readyInMinutes}} minutes
+                <i class="fas fa-users text-info"></i> {{Recipe.servings}} portions
                 </small>
-                <p class="card-text text-center">  Calories:{{nutrition.calories}} | Carbohydrates:${nutrition.carbs}}    Fats:${nutrition.fat}} | Protein:${nutrition.protein}}</p>
+                <p class="card-text text-center">  Calories:{{calories}} | Carbohydrates:{{carbs}}    Fats: {{fat}} | Protein: {{protein}}</p>
                 <span>
                     <a href="#" class="btn btn-info btn-md float-left">Instructions</a>
                     <a href="#" class="btn btn-info btn-md float-right">Ingredients</a>
@@ -60,8 +62,11 @@
                 <div class="views">  
                 </div>
                 <div class="stats">
-                <span class=""><i class="far fa-thumbs-up"></i> {{aggregateLikes}}</span>
-                <span class="${isVegetarian}}"><i class="fas fa-leaf"></i> Vegeterian</span>
+                <span class=""><i class="far fa-thumbs-up"></i> {{Recipe.aggregateLikes}}</span>
+                {{#if Recipe.isVegetarian}}
+                <span class=""><i class="fas fa-leaf"></i> Vegeterian</span>
+                {{else}}
+                {{/if}}
                 </div>
             </div>
         </div>      
@@ -69,5 +74,4 @@
 
     </div>
 </div>
-<!--/.Navbar -->
 

@@ -23,7 +23,6 @@ module.exports = function(app) {
     //   });
     // });
   });
-
   app.get("/test", function(req, res) {
     db.Example.findOne({ where: { id: req.params.id } }).then(function(
       dbExample
@@ -36,7 +35,30 @@ module.exports = function(app) {
   app.get("/wajiha", function(req, res) {
     res.render("create");
   });
-
+  app.get("/savedRecipes", function(req, res) {
+    console.log("Url was hit.");
+    // db.Recipes.findAll({
+    //   // include: [{ model: db.Nutrition, required: true }]
+    // }).then(function(recipes) {
+    //   console.log(recipes);
+    //   res.json(recipes);
+    // });
+    // db.Nutrition.findAll({
+    //   // include: [{ model: db.Nutrition, required: true }]
+    // }).then(function(recipes) {
+    //   console.log(recipes);
+    //   res.json(recipes);
+    // });
+    db.Nutrition.findAll({
+      include: [{ model: db.Recipes, required: true }]
+    }).then(function(recipes) {
+      console.log(JSON.stringify(recipes));
+      res.render("recipes", {
+        recipes: recipes,
+        name: "benjamin"
+      });
+    });
+  });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
