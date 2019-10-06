@@ -3,6 +3,7 @@
 $("document").ready(function() {
   console.log("Loaded");
   $("#submitBtn").on("click", function(_event) {
+    event.preventDefault();
     var searchCriteria = {
       search: $("#search")
         .val()
@@ -43,9 +44,8 @@ $("document").ready(function() {
     var id = $(this).data("id");
     console.log(id);
     // Send the POST request.
-    $.ajax("/api/searchRecipe", {
-      type: "POST",
-      data: { id: id }
+    $.ajax("/api/searchRecipe/" + id, {
+      type: "POST"
     }).then(function(resp) {
       console.log(resp);
       let recipe = resp.recipesObj;
@@ -92,6 +92,14 @@ $("document").ready(function() {
     });
   });
 
+  $("body").on("click", ".save", function(_event) {
+    var id = $(this).data("id");
+    $.ajax("/api/SaveRecipe/" + id, {
+      type: "POST"
+    }).then(function(resp) {
+      return true;
+    });
+  });
   //   $("body").on("click", ".recipeOption", function(event) {
   //     // Make sure to preventDefault on a submit event.
   //     // event.preventDefault();
