@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
+    "password": "@Rootkali!23",
     "database": "recipesdb",
     "host": "localhost",
     "dialect": "mysql"

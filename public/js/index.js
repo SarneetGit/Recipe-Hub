@@ -77,4 +77,5 @@ $("#sumbitRecipe").on("click", function() {
       .trim()
   };
   console.log(secondForm);
+  alert("Recipe Submitted!");
 });

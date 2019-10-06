@@ -1,6 +1,6 @@
 <!--NAVBAR-->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#"><img src="/images/recphub-logo.png" /></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,33 +28,33 @@
 <br />
 
 
-<div class="jumbotron" id="div1">
-    <div>
+<div id="div1">
+    <div class="bg-light">
         <h1 class="text-center"><strong>Create your Recipe here!</strong></h1>
     </div>
 
     <form id="todo-form">
         <div class="container">
             <div class=" row">
-                <div class="col-10 card-header"><strong>Recipe Title:</strong>
+                <div class="col-10 card-header bg-light"><strong>Recipe Title:</strong>
                     <input class="new-item form-control" type="text" id="title"
-                        placeholder='e.g "Pumpkin, halloumi & chilli omelette" ' type="text" />required
+                        placeholder='e.g "Pumpkin, halloumi & chilli omelette" ' type="text" />
                 </div>
-                <div class="col-10 card-header"><strong>Is it Vegetarian?</strong>
+                <div class="col-10 card-header bg-light"><strong>Is it Vegetarian?</strong>
                     <select class="custom-selectnew-item form-control" id="vegetarian">
                         <option selected class="text-2">Yes/No</option>
                         <option value="1">No</option>
                         <option value="2">Yes</option>
                     </select>
                 </div>
-                <div class="col-10 card-header"><strong>Prep Time (hh:mm:ss):</strong>
+                <div class="col-10 card-header bg-light"><strong>Prep Time (hh:mm:ss):</strong>
                     <input class="new-item form-control prepTime" type="time" id="prepTime" type="text" required>
                 </div>
-                <div class="col-10 card-header"><strong>How many people will it serve?</strong>
+                <div class="col-10 card-header bg-light"><strong>How many people will it serve?</strong>
                     <input class="new-item form-control servings" type="number" id="servings" placeholder="Servings"
                         type="text" required />
                 </div>
-                <div class="col-10 card-header"><strong>Enter Ingredients with quantity</strong>
+                <div class="col-10 card-header bg-light"><strong>Enter Ingredients with quantity</strong>
                     <input class="new-item form-control" placeholder="e.g 2 tsp cider or balsamic vinegar" type="text"
                         id="original" required />
                     <div class="input-group-append">
@@ -69,10 +69,10 @@
     <br>
 </div>
 <!--INGREDIENTS TABLE-->
-<div class="container">
+<div class="container bg-light">
     <div class="container">
         <table class="table" id="ingredientsTable">
-            <thead class="thead-light">
+            <thead class="thead-light bg-light">
                 <tr>
                     <th scope="col" id="ingredient">Ingredients</th>
                     <th scope="col">Delete </th>
@@ -118,7 +118,7 @@
     </div>
     <br>
     <!--INSTRUCTIONS TABLE-->
-    <div class="container">
+    <div class="container bg-light">
         <table class="table" id="instructionsTable">
             <thead class="thead-light">
                 <tr>
