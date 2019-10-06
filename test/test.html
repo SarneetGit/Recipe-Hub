@@ -1,0 +1,752 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<!DOCTYPE html><html class=''>
+<head><script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/aj372/pen/LkqPYw" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css" rel="stylesheet">
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'><script src='https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js'></script><link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+<style class="cp-pen-styles">* {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.container {
+  width: 550px;
+  margin: 0 auto;
+  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.5);
+  margin: 20px auto;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.feature-heading {
+  text-align: center;
+  margin: 0px 0px 15px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: lighter;
+}
+.feature-heading::after {
+  content: '';
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 20%;
+  display: block;
+  margin: 5px auto 0;
+}
+
+.header {
+  background: url(http://www4.theoakkroom.com/wp-content/uploads/2015/03/grilled-chicken-salad.jpg) no-repeat center center;
+  min-height: 450px;
+  background-size: cover;
+  position: relative;
+}
+.header::after {
+  content: '';
+  height: 450px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.header .navigation {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  position: relative;
+  z-index: 99;
+}
+.header .navigation::before {
+  content: '\f036';
+  font-family: FontAwesome;
+  color: white;
+  font-size: 28px;
+  margin: 15px 0px 0px 15px;
+  cursor: pointer;
+  transform: scale(1, -1);
+  line-height: 65px;
+  background-color: #6791ac;
+  width: 65px;
+  height: 65px;
+  text-align: center;
+  border-radius: 100%;
+}
+.header .navigation .face {
+  display: none;
+  background: url(https://s3.amazonaws.com/uifaces/faces/twitter/whale/128.jpg) no-repeat;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  list-style: none;
+  border-radius: 100%;
+  margin-right: 17px;
+}
+.header .header-info {
+  height: calc(400px - 75px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 99;
+}
+.header .header-info h2 {
+  margin: 0 0 15px 0;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+}
+.header .header-info .header-btns {
+  display: flex;
+}
+.header .header-info .header-btns a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 7px 25px;
+  border: 2px solid #fff;
+  margin: 0 7px;
+  transition: all 200ms ease-in-out;
+}
+.header .header-info .header-btns a:hover {
+  background: #fff;
+  color: #6791ac;
+}
+
+.recipes {
+  margin: 0 -15px;
+  background: #6791ac;
+  padding-top: 15px;
+  position: relative;
+}
+.recipes::before {
+  content: '';
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(100, 111, 186, 0) 34%, #6791ac 95%);
+  position: absolute;
+  top: -150px;
+}
+.recipes .recipe {
+  width: 100%;
+  margin: 0 auto 15px;
+  border-radius: 5px;
+  display: flex;
+  background: white;
+  padding: 0 15px;
+  background-clip: content-box;
+}
+.recipes .recipe .add-recipe {
+  display: flex;
+  width: 20%;
+  background: #f96b6b;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+.recipes .recipe .add-recipe::before {
+  content: '\f067';
+  font-family: FontAwesome;
+  font-size: 20px;
+  color: white;
+  animation: add-recipe-grow 300ms linear;
+}
+.recipes .recipe .add-recipe.added {
+  background: #5bd872;
+}
+.recipes .recipe .add-recipe.added::before {
+  content: '\f00c';
+  animation: add-recipe-grow 300ms linear;
+}
+.recipes .recipe .add-recipe:hover {
+  background: #f84949;
+}
+.recipes .recipe .add-recipe:hover.added {
+  background: #3ed159;
+}
+.recipes .recipe .recipe-info {
+  padding: 10px;
+}
+.recipes .recipe .recipe-info h3, .recipes .recipe .recipe-info p {
+  margin: 0px;
+}
+.recipes .recipe .recipe-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #666;
+}
+.recipes .recipe .recipe-info p {
+  font-size: 14px;
+  color: #888;
+}
+.recipes .recipe .recipe-info ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.recipes .recipe .recipe-info ul li {
+  list-style: none;
+  margin-left: 15px;
+  color: #888;
+  cursor: pointer;
+}
+.recipes .recipe .recipe-info ul li.like, .recipes .recipe .recipe-info ul li.share {
+  position: relative;
+}
+.recipes .recipe .recipe-info ul li.like::before, .recipes .recipe .recipe-info ul li.share::before {
+  content: '';
+  font-family: FontAwesome;
+  margin-right: 5px;
+}
+.recipes .recipe .recipe-info ul li.like .share-menu, .recipes .recipe .recipe-info ul li.share .share-menu {
+  position: absolute;
+  background: white;
+  width: 65px;
+  display: flex;
+  justify-content: center;
+  border-radius: 2px;
+  top: -30px;
+  left: -9px;
+  -webkit-filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.9));
+  display: none;
+}
+.recipes .recipe .recipe-info ul li.like .share-menu::after, .recipes .recipe .recipe-info ul li.share .share-menu::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  position: absolute;
+  bottom: -6px;
+  border: 6px solid white;
+  border-left: none;
+  border-top: none;
+}
+.recipes .recipe .recipe-info ul li.like .share-menu li, .recipes .recipe .recipe-info ul li.share .share-menu li {
+  margin: 0;
+  padding: 0px 8px;
+}
+.recipes .recipe .recipe-info ul li.like .share-menu .facebook::before, .recipes .recipe .recipe-info ul li.share .share-menu .facebook::before {
+  content: '\f09a';
+  font-family: FontAwesome;
+}
+.recipes .recipe .recipe-info ul li.like .share-menu .twitter::before, .recipes .recipe .recipe-info ul li.share .share-menu .twitter::before {
+  content: '\f099';
+  font-family: FontAwesome;
+}
+.recipes .recipe .recipe-info ul li.like::before {
+  content: '\f004';
+  color: inherit;
+}
+.recipes .recipe .recipe-info ul li.like.liked::before {
+  color: #f96b6b;
+}
+.recipes .recipe .recipe-info ul li.share::before {
+  content: '\f064';
+  color: inherit;
+}
+.recipes .recipe .recipe-info ul li.share.shared::before {
+  color: #3f4c6b;
+}
+
+.favourites {
+  margin: 0 -15px;
+  background: #6791ac;
+  padding-top: 15px;
+  position: relative;
+}
+.favourites .favourite-row {
+  display: flex;
+}
+.favourites .favourite-row .favourite {
+  cursor: pointer;
+  overflow: hidden;
+  min-height: 200px;
+  background-clip: content-box !important;
+  background-size: cover !important;
+  background-color: white;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+.favourites .favourite-row .favourite::before {
+  content: '\f004';
+  font-family: FontAwesome;
+  color: #f96b6b;
+  position: absolute;
+  top: 0;
+  width: calc(100% - 22.5px);
+  padding: 5px;
+  font-size: 20px;
+}
+.favourites .favourite-row .favourite h5 {
+  background: white;
+  margin: 0px;
+  padding: 15px;
+  text-align: center;
+  color: #666;
+  font-weight: 600;
+}
+.favourites .favourite-row .favourite .btn {
+  text-align: center;
+  border-radius: 0;
+  display: flex;
+  padding: 0;
+  border: none;
+  transform: translateY(40px);
+  transition: all 300ms ease-in-out;
+}
+.favourites .favourite-row .favourite .btn a {
+  display: block;
+  width: 50%;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  transition: all 300ms ease-in-out;
+}
+.favourites .favourite-row .favourite .btn a.view {
+  background: #5bd872;
+}
+.favourites .favourite-row .favourite .btn a.view:hover {
+  background: #3ed159;
+}
+.favourites .favourite-row .favourite .btn a.remove {
+  background: #f96b6b;
+}
+.favourites .favourite-row .favourite .btn a.remove:hover {
+  background: #f84949;
+}
+.favourites .favourite-row .favourite:nth-child(even) {
+  padding-left: 7.5px;
+}
+.favourites .favourite-row .favourite:nth-child(odd) {
+  padding-right: 7.5px;
+}
+.favourites .favourite-row .favourite:hover .btn {
+  transform: translateY(0px);
+}
+.favourites .favourite-feature-row {
+  margin: 0 15px 15px;
+}
+.favourites .favourite-feature-row .favourite-feature {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-start;
+  background: white;
+}
+.favourites .favourite-feature-row .favourite-feature .info {
+  width: 100%;
+  padding: 10px;
+}
+.favourites .favourite-feature-row .favourite-feature .info h3, .favourites .favourite-feature-row .favourite-feature .info p {
+  margin: 0px;
+}
+.favourites .favourite-feature-row .favourite-feature .info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #666;
+}
+.favourites .favourite-feature-row .favourite-feature .info p {
+  font-size: 14px;
+  color: #888;
+}
+.favourites .favourite-feature-row .favourite-feature .info .user-input ul {
+  margin: 8px 0 -8px 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+.favourites .favourite-feature-row .favourite-feature .info .user-input ul li {
+  list-style: none;
+  margin-left: 15px;
+  color: #888;
+  cursor: pointer;
+  font-size: 14px;
+}
+.favourites .favourite-feature-row .favourite-feature .info .user-input ul li.like, .favourites .favourite-feature-row .favourite-feature .info .user-input ul li.share {
+  position: relative;
+}
+.favourites .favourite-feature-row .favourite-feature .info .user-input ul li.like::before, .favourites .favourite-feature-row .favourite-feature .info .user-input ul li.share::before {
+  content: '';
+  font-family: FontAwesome;
+  margin-right: 5px;
+}
+.favourites .favourite-feature-row .favourite-feature .info .user-input ul li.like::before {
+  content: '\f004';
+  color: inherit;
+}
+.favourites .favourite-feature-row .favourite-feature .info .user-input ul li.like.liked::before {
+  color: #f96b6b;
+}
+.favourites .favourite-feature-row .favourite-feature .info .user-input ul li.share::before {
+  content: '\f064';
+  color: inherit;
+}
+.favourites .favourite-feature-row .favourite-feature .info .user-input ul li.share.shared::before {
+  color: #3f4c6b;
+}
+.favourites .favourite-feature-row .favourite-feature ul.user-actions {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.favourites .favourite-feature-row .favourite-feature ul.user-actions li {
+  list-style: none;
+  font-size: 16px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+.favourites .favourite-feature-row .favourite-feature ul.user-actions li.view {
+  background: #5bd872;
+}
+.favourites .favourite-feature-row .favourite-feature ul.user-actions li.view::after {
+  content: '\f06e';
+  font-family: FontAwesome;
+  color: white;
+}
+.favourites .favourite-feature-row .favourite-feature ul.user-actions li.view:hover {
+  background: #3ed159;
+}
+.favourites .favourite-feature-row .favourite-feature ul.user-actions li.remove {
+  background: #f96b6b;
+}
+.favourites .favourite-feature-row .favourite-feature ul.user-actions li.remove::after {
+  content: '\f00d';
+  font-family: FontAwesome;
+  color: white;
+}
+.favourites .favourite-feature-row .favourite-feature ul.user-actions li.remove:hover {
+  background: #f84949;
+}
+
+.videos {
+  margin: 0 -15px;
+  background: #6791ac;
+  padding-top: 15px;
+  position: relative;
+}
+.videos .video {
+  margin: 0 15px;
+}
+.videos .video a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 250ms ease-in-out;
+  overflow: hidden;
+}
+.videos .video a h4 {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  text-align: center;
+  z-index: 99;
+  color: #fff;
+  transform: translateY(-30px);
+  transition: all 250ms ease-in-out;
+}
+.videos .video a::after {
+  content: '\f01d';
+  font-family: FontAwesome;
+  color: rgba(91, 216, 114, 0.75);
+  position: absolute;
+  font-size: 10em;
+  transition: all 250ms ease-in-out;
+}
+.videos .video a img {
+  width: 100%;
+  height: auto;
+  opacity: 0.75;
+  transition: all 250ms ease-in-out;
+}
+.videos .video a:hover::after {
+  color: #5bd872;
+}
+.videos .video a:hover h4 {
+  transform: translateY(0);
+}
+.videos .video a:hover img {
+  opacity: 0.95;
+}
+.videos .video-next {
+  display: flex;
+  margin: 0 15px 15px;
+}
+.videos .video-next .video {
+  margin: 0px;
+  opacity: 0.4;
+  height: 100px;
+  width: 25%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+}
+.videos .video-next .video img {
+  width: auto;
+  height: 100%;
+}
+.videos .video-next .video:hover {
+  opacity: 0.95;
+}
+
+.user-menu {
+  margin: 0 -15px;
+  background: #6791ac;
+  position: relative;
+}
+.user-menu ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background: white;
+}
+.user-menu ul li {
+  list-style: none;
+  width: 25%;
+  text-align: center;
+}
+.user-menu ul li a {
+  font-size: 16px;
+  color: #888;
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  transition: all 200ms ease-in-out;
+}
+.user-menu ul li a:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.user-menu ul li:not(:last-of-type) {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@keyframes add-recipe-grow {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+</style></head><body>
+<style>
+  @import 'https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700';
+</style>
+
+<div class="container">
+  <div class="row header">
+    <ul class="navigation">
+      <li class="face"></li>
+    </ul>
+    <div class="header-info">
+      <h2>Find new Recipes to try at Home</h2>
+      <div class="header-btns">
+        <a href="#">Discover</a>
+        <a href="#">Sign Up</a>
+      </div>
+    </div>
+  </div>
+  <div class="row recipes">
+    <h4 class="feature-heading">Latest</h4>
+    <div class="recipe">
+      <div class="add-recipe">
+      </div>
+      <div class="recipe-info">
+        <h3>Warm Chicken Sandwich</h3>
+        <p>
+          Cred gochujang ugh, food truck twee you probably haven't heard of them...
+        </p>
+        <div class="user-input">
+          <ul>
+            <li class="like">Like</li>
+            <li class="share">Share
+              <ul class="share-menu">
+                <li class="facebook"></li>
+                <li class="twitter"></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="recipe">
+      <div class="add-recipe added">
+      </div>
+      <div class="recipe-info">
+        <h3>Chicken Risotto</h3>
+        <p>
+          Cred gochujang ugh, food truck twee you probably haven't heard of them...
+        </p>
+        <div class="user-input">
+          <ul>
+            <li class="like liked">Like</li>
+            <li class="share">Share
+              <ul class="share-menu">
+                <li class="facebook"></li>
+                <li class="twitter"></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="recipe">
+      <div class="add-recipe">
+      </div>
+      <div class="recipe-info">
+        <h3>Steak Salad</h3>
+        <p>
+          Cred gochujang ugh, food truck twee you probably haven't heard of them...
+        </p>
+        <div class="user-input">
+          <ul>
+            <li class="like">Like</li>
+            <li class="share">Share
+              <ul class="share-menu">
+                <li class="facebook"></li>
+                <li class="twitter"></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row favourites">
+    <h4 class="feature-heading">Favourites</h4>
+    <div class="favourite-row">
+      <div 
+           class="favourite col-xs-6"
+           style="background: url(http://assets.kraftfoods.com/recipe_images/opendeploy/53460_SGS_%20K2304%20V0_OR1_FO_640x428.jpg) no-repeat center center"
+      >
+<!--         <h5>Cheese Sandwich</h5> -->
+        <div class="btn">
+          <a href="#" class="view">View</a>
+          <a href="#" class="remove">Remove</a>
+        </div>
+      </div>
+      <div class="favourite col-xs-6" style="background: url(https://cdn.scahw.com.au/cdn-1d09f3c3fa2c370/ImageVaultFiles/id_350209/cf_7/pizza-ham-pineapple-628.JPG) no-repeat center center">
+<!--         <h5>Cheese Sandwich</h5> -->
+        <div class="btn">
+          <a href="#" class="view">View</a>
+          <a href="#" class="remove">Remove</a>
+        </div>
+      </div>
+    </div>
+    <div class="favourite-feature-row">
+      <div class="favourite-feature">
+        <ul class="user-actions">
+          <li class="view"></li>
+          <li class="remove"></li>
+        </ul>
+        <div class="info">
+          <h3>Hamburger</h3>
+          <p>
+            Cred gochujang ugh, food truck twee you probably haven't heard of them...
+          </p>
+          <div class="user-input">
+            <ul>
+              <li class="like liked">Like</li>
+              <li class="share shared">Share</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="favourite-feature">
+        <ul class="user-actions">
+          <li class="view"></li>
+          <li class="remove"></li>
+        </ul>
+        <div class="info">
+          <h3>Classic Pasta</h3>
+          <p>
+            Cred gochujang ugh, food truck twee you probably haven't heard of them...
+          </p>
+          <div class="user-input">
+            <ul>
+              <li class="like liked">Like</li>
+              <li class="share shared">Share</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row videos">
+    <h4 class="feature-heading">Sponsored Videos - Jamie Oliver</h4>
+    <div class="video">
+      <a href="#">
+        <h4>Pancakes for Dinner?</h4>
+        <img src="http://images.bwwstatic.com/columnpic7/05A8F207-9ED3-4C02-C168E76D2B156D5C.jpg" alt="Jamie Oliver" />
+      </a>
+    </div>
+    <div class="video-next">
+      <div class="video">
+        <img src="http://cdn.playbuzz.com/cdn/e4acb0ab-1980-4270-9f2e-5c5b49f525b9/08039032-eb85-4518-824a-27d0db8d004c.jpg" alt="Jamie Oliver" />
+      </div>
+      <div class="video">
+        <img src="http://aib.edu.au/blog/wp-content/uploads/2016/05/Jamie-Oliver.jpg" alt="Jamie Oliver" />
+      </div>
+      <div class="video">
+        <img src="https://i.cdn.turner.com/cnn/2010/LIVING/03/18/jamie.oliver.fattest.town/t1larg.jamie.oliver.abc.jpg" alt="Jamie Oliver" />
+      </div>
+      <div class="video">
+        <img src="https://indianexpressonline.files.wordpress.com/2015/09/jamie-main.jpg" alt="Jamie Oliver" />
+      </div>
+    </div>
+  </div>
+  <div class="row user-menu">
+    <ul>
+      <li><a href="#">Feed</a></li>
+      <li><a href="#">Discover</a></li>
+      <li><a href="#">Favourites</a></li>
+      <li><a href="#">Upload</a></li>
+    </ul>
+  </div>
+</div>
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script >$(document).ready(function(){
+  var $likeToggle = $('.user-input .like');
+  var $shareToggle = $('.user-input .share');
+  var $addRecipeToggle = $('.add-recipe');
+  
+  $likeToggle.on('click', function(e){
+    e.stopPropagation();
+    $(this).toggleClass('liked');
+  });
+  
+  $shareToggle.on('click', function(e){
+    e.stopPropagation();
+    $(this).toggleClass('shared');
+  });
+  
+  $addRecipeToggle.on('click', function(e){
+    e.stopPropagation();
+    $(this).toggleClass('added');
+  });
+  
+});
+//# sourceURL=pen.js
+</script>
+</body></html>

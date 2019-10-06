@@ -1,0 +1,73 @@
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-light blue lighten-4" style="font-size: 150%;">
+  <a class="navbar-brand" href="#"><img id="logoImage" src="/images/pngLogo2.png" alt="Logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Create</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Search</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="#">My Saved Recipes</a>
+          <a class="dropdown-item" href="#">Log Out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="containe">
+    <div class="row" style="margin-bottom:10vh;">
+        {{#each recipes}}
+        <div class="col-lg-4 offset-4" style="padding:20px;">
+            <div class="card">
+            <div class="view">
+                <img src="{{image}}" class="card-img-top" alt="photo">
+                <a href="{{sourceUrl}}" target="_blank">
+                </a>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title" style="color:black;">{{title}}</h4>
+                <small class="text-muted cat">
+                <i class="far fa-clock text-info"></i> {{readyInMinutes}} minutes
+                <i class="fas fa-users text-info"></i> {{servings}} portions
+                </small>
+                <p class="card-text text-center">  Calories:{{nutrition.calories}} | Carbohydrates:${nutrition.carbs}}    Fats:${nutrition.fat}} | Protein:${nutrition.protein}}</p>
+                <span>
+                    <a href="#" class="btn btn-info btn-md float-left">Instructions</a>
+                    <a href="#" class="btn btn-info btn-md float-right">Ingredients</a>
+                </span>
+            </div>
+            <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                <div class="views">  
+                </div>
+                <div class="stats">
+                <span class=""><i class="far fa-thumbs-up"></i> {{aggregateLikes}}</span>
+                <span class="${isVegetarian}}"><i class="fas fa-leaf"></i> Vegeterian</span>
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    </div>
+</div>
+<!--/.Navbar -->
+
