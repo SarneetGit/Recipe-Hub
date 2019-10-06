@@ -1,3 +1,4 @@
+
 // //NEXT BUTTON
 $(document).ready(function() {
   $("#div2").hide();
@@ -77,4 +78,5 @@ $("#sumbitRecipe").on("click", function() {
       .trim()
   };
   console.log(secondForm);
+
 });
