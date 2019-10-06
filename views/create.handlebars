@@ -16,61 +16,67 @@
                 <a class="nav-link" href="#">Search Recipes</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link" href="/wajiha">
+                <a class="nav-link" href="/create">
                     Create Recipes
                 </a>
             </li>
         </ul>
     </div>
+    <br>
 </nav>
 
 <br />
 
-<div class="jumbotron">
-    <div class="container" id="div1">
-        <div>
-            <h1 class="text-center"><strong>Create your Recipe here!</strong></h1>
-        </div>
 
-        <form id="todo-form">
-            <div class="container">
-                <div class="row">
-                    <div class="col-10">
-                        <input class="new-item form-control" type="text" id="prepTime"
-                            placeholder="The name of your recipe e.g 'Pumpkin, halloumi & chilli omelette' " type="text"
-                            required />
-                    </div>
-                    <div class="col-10">
-                        <select class="custom-selectnew-item form-control" id="">
-                            <option selected class="text-2">Vegetarian? (optional)</option>
-                            <option value="1">No</option>
-                            <option value="2">Yes</option>
-                        </select>
-                    </div>
-                    <div class="col-10">
-                        <input class="new-item form-control" type="number" id="prepTime"
-                            placeholder="Prep Time (Required)" type="text" required />
-                    </div>
-                    <div class="col-10">
-                        <input class="new-item form-control" placeholder="e.g 2 tsp cider or balsamic vinegar"
-                            type="text" id="ingredients" required />
-                    </div>
+<div class="jumbotron" id="div1">
+    <div>
+        <h1 class="text-center"><strong>Create your Recipe here!</strong></h1>
+    </div>
+
+    <form id="todo-form">
+        <div class="container">
+            <div class=" row">
+                <div class="col-10 card-header"><strong>Recipe Title:</strong>
+                    <input class="new-item form-control" type="text" id="title"
+                        placeholder='e.g "Pumpkin, halloumi & chilli omelette" ' type="text" />required
+                </div>
+                <div class="col-10 card-header"><strong>Is it Vegetarian?</strong>
+                    <select class="custom-selectnew-item form-control" id="vegetarian">
+                        <option selected class="text-2">Yes/No</option>
+                        <option value="1">No</option>
+                        <option value="2">Yes</option>
+                    </select>
+                </div>
+                <div class="col-10 card-header"><strong>Prep Time (hh:mm:ss):</strong>
+                    <input class="new-item form-control prepTime" type="time" id="prepTime" type="text" required>
+                </div>
+                <div class="col-10 card-header"><strong>How many people will it serve?</strong>
+                    <input class="new-item form-control servings" type="number" id="servings" placeholder="Servings"
+                        type="text" required />
+                </div>
+                <div class="col-10 card-header"><strong>Enter Ingredients with quantity</strong>
+                    <input class="new-item form-control" placeholder="e.g 2 tsp cider or balsamic vinegar" type="text"
+                        id="original" required />
                     <div class="input-group-append">
                         <button class="btn btn-sm btn-primary" type="button" id="addIngred">+</button>
                     </div>
 
-
                 </div>
-        </form>
-        <br>
-    </div>
-    <!--INGREDIENTS TABLE-->
+
+
+            </div>
+    </form>
+    <br>
+</div>
+<!--INGREDIENTS TABLE-->
+<div class="container">
     <div class="container">
         <table class="table" id="ingredientsTable">
             <thead class="thead-light">
                 <tr>
                     <th scope="col" id="ingredient">Ingredients</th>
-                    <th scope="col"> </th>
+                    <th scope="col">Delete </th>
+
                 </tr>
             </thead>
             <tbody>
@@ -79,12 +85,10 @@
 
     </div>
     <div class="text-center">
-        <button type="button" class="btn btn-primary" id="next">Next</button>
+        <button type="button" class="btn btn-primary next" id="next">Next</button>
     </div>
 
-
-
-
+</div>
 
 </div>
 <!--Second Create instance after button (next ) is clicked-->
@@ -96,7 +100,7 @@
     <div class="container">
         <form role="form">
             <div class="input-group">
-                <input id="instructions" type="text" class="form-control" placeholder="Instruction (1 at a time) " />
+                <input type="text" class="form-control" placeholder="Steps(add one at a time) " id="instrucStep" />
                 <div class="input-group-append">
                     <button class="btn btn-sm btn-primary" type="button" id="add">+</button>
                 </div>
@@ -109,7 +113,7 @@
     <br>
     <div class="text-center">
         <button type="button" class="btn btn-primary" id="back">Go Back</button>
-        <button type="button" class="btn btn-primary" id="next">Sumbit Recipe</button>
+        <button type="button" class="btn btn-primary sumbitRecipe" id="sumbitRecipe">Sumbit Recipe</button>
 
     </div>
     <br>
@@ -119,8 +123,8 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col" id="instrucStep">instruction step</th>
-                    <th scope="col"> </th>
+                    <th scope="col">instruction step</th>
+                    <th scope="col">Delete </th>
                 </tr>
             </thead>
             <tbody>
