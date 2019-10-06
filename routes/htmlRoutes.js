@@ -32,7 +32,7 @@ module.exports = function(app) {
       });
     });
   });
-  app.get("/wajiha", function(req, res) {
+  app.get("/create", function(req, res) {
     res.render("create");
   });
   app.get("/savedRecipes", function(req, res) {
