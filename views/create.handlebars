@@ -16,72 +16,123 @@
                 <a class="nav-link" href="#">Search Recipes</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link" href="/wajiha">
+                <a class="nav-link" href="/create">
                     Create Recipes
                 </a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
-                Search
-            </button>
-        </form>
     </div>
+    <br>
 </nav>
 
 <br />
 
-<div class="jumbotron ">
+
+<div class="jumbotron" id="div1">
     <div>
         <h1 class="text-center"><strong>Create your Recipe here!</strong></h1>
     </div>
 
     <form id="todo-form">
         <div class="container">
-            <div class="row">
-                <div class="col-10">
-                    <input class="new-item form-control" placeholder="Recipe Name" type="text" id="title" required />
+            <div class=" row">
+                <div class="col-10 card-header"><strong>Recipe Title:</strong>
+                    <input class="new-item form-control" type="text" id="title"
+                        placeholder='e.g "Pumpkin, halloumi & chilli omelette" ' type="text" />required
                 </div>
-                <div class="col-10">
-                    <input class="new-item form-control" placeholder="Serving size" type="text" required />
-                </div>
-                <div class="col-10">
-                    <input class="new-item form-control" placeholder="Ready in how many minutes?" type="text"
-                        required />
-                </div>
-                <div class="col-10">
-                    <select class="custom-selectnew-item form-control" id="">
-                        <option selected class="text-2">Vegetarian?</option>
+                <div class="col-10 card-header"><strong>Is it Vegetarian?</strong>
+                    <select class="custom-selectnew-item form-control" id="vegetarian">
+                        <option selected class="text-2">Yes/No</option>
                         <option value="1">No</option>
                         <option value="2">Yes</option>
                     </select>
                 </div>
-                <div class="col-10">
-                    <select class="custom-selectnew-item form-control" id="">
-                        <option selected class="text-2">Gluten Free?</option>
-                        <option value="1">No</option>
-                        <option value="2">Yes</option>
-                    </select>
+                <div class="col-10 card-header"><strong>Prep Time (hh:mm:ss):</strong>
+                    <input class="new-item form-control prepTime" type="time" id="prepTime" type="text" required>
+                </div>
+                <div class="col-10 card-header"><strong>How many people will it serve?</strong>
+                    <input class="new-item form-control servings" type="number" id="servings" placeholder="Servings"
+                        type="text" required />
+                </div>
+                <div class="col-10 card-header"><strong>Enter Ingredients with quantity</strong>
+                    <input class="new-item form-control" placeholder="e.g 2 tsp cider or balsamic vinegar" type="text"
+                        id="original" required />
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-primary" type="button" id="addIngred">+</button>
+                    </div>
+
                 </div>
 
-                <!-- <div class="col-10">
-                <select class="custom-selectnew-item form-control" id="">
-                    <option selected class="text-2">How much to you rate this recipe?</option>
-                    <option value="1">5 stars</option>
-                    <option value="2">4 stars</option>
-                    <option value="1">3 stars</option>
-                    <option value="2">2 stars</option>
-                    <option value="1">1 stars</option>
-                    <option value="2">Horrible!!!</option>
-                  </select>
-            </div> -->
 
             </div>
     </form>
     <br>
-    <div class="text-center">
-        <button type="button" class="btn btn-primary" id="next">Next</button>
+</div>
+<!--INGREDIENTS TABLE-->
+<div class="container">
+    <div class="container">
+        <table class="table" id="ingredientsTable">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" id="ingredient">Ingredients</th>
+                    <th scope="col">Delete </th>
+
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
     </div>
+    <div class="text-center">
+        <button type="button" class="btn btn-primary next" id="next">Next</button>
+    </div>
+
+</div>
+
+</div>
+<!--Second Create instance after button (next ) is clicked-->
+<div class="jumbotron" id="div2">
+    <div>
+        <h1 class="text-center"><strong>Add Instructions here!</strong></h1>
+    </div>
+
+    <div class="container">
+        <form role="form">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Steps(add one at a time) " id="instrucStep" />
+                <div class="input-group-append">
+                    <button class="btn btn-sm btn-primary" type="button" id="add">+</button>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="text-center">
+        <button type="button" class="btn btn-primary" id="back">Go Back</button>
+        <button type="button" class="btn btn-primary sumbitRecipe" id="sumbitRecipe">Sumbit Recipe</button>
+
+    </div>
+    <br>
+    <!--INSTRUCTIONS TABLE-->
+    <div class="container">
+        <table class="table" id="instructionsTable">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">instruction step</th>
+                    <th scope="col">Delete </th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </div>
+
+
 
 </div>
