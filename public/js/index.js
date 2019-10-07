@@ -161,8 +161,8 @@ $(document).ready(function() {
         <div class="card">
           <div class="view">
             <img src="${recipe.image}" class="card-img-top" alt="photo">
-            <a href="${recipe.sourceUrl}" target="_blank">
-            </a>
+            <a href="${recipe.sourceUrl}" target="_blank"></a>
+            <i class="far fa-heart float-right save" data-id=${id} data-state="notSaved" style="color:red;"></i>
           </div>
           <div class="card-body">
             <h4 class="card-title" style="color:black;">${recipe.title}</h4>
@@ -192,11 +192,17 @@ $(document).ready(function() {
 
   $("body").on("click", ".save", function(_event) {
     var id = $(this).data("id");
-    $.ajax("/api/SaveRecipe/" + id, {
-      type: "POST"
-    }).then(function(resp) {
+    $(this).attr("class", "fas fa-heart float-right save");
+    if ($(this).data("state") === "notSaved") {
+      $.ajax("/api/SaveRecipe/" + id, {
+        type: "POST"
+      }).then(function(resp) {
+        $(".save").data("state", "saved");
+        return true;
+      });
+    } else {
       return true;
-    });
+    }
   });
   //   $("body").on("click", ".seeRecipe", function(_event) {
   //     var id = $(this).data("id");

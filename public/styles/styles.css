@@ -430,3 +430,20 @@ input[type="text"]::placeholder
   padding-left: 10px;
 
 } */
+
+.save { 
+
+  transition: text-shadow 0.3s;
+
+}
+
+
+
+
+
+
+.save {
+
+  text-shadow: .5px .5px #20202088;
+
+}
