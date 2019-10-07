@@ -1,4 +1,5 @@
 var db = require("../models");
+const axois = require("axios");
 
 module.exports = function(app) {
   // Load index page
@@ -37,18 +38,6 @@ module.exports = function(app) {
   });
   app.get("/savedRecipes", function(req, res) {
     console.log("Url was hit.");
-    // db.Recipes.findAll({
-    //   // include: [{ model: db.Nutrition, required: true }]
-    // }).then(function(recipes) {
-    //   console.log(recipes);
-    //   res.json(recipes);
-    // });
-    // db.Nutrition.findAll({
-    //   // include: [{ model: db.Nutrition, required: true }]
-    // }).then(function(recipes) {
-    //   console.log(recipes);
-    //   res.json(recipes);
-    // });
     db.Nutrition.findAll({
       include: [{ model: db.Recipes, required: true }]
     }).then(function(recipes) {
@@ -58,6 +47,59 @@ module.exports = function(app) {
         name: "benjamin"
       });
     });
+  });
+  app.get("/show/:id", function(req, res) {
+    let id = req.params.id;
+    axois
+      .get(
+        `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=5ced0faa528f4a91a6f2ee1892c4f789`
+      )
+      .then(response => {
+        let obj = response.data;
+        var ingredientsListObj = [];
+        var instructionsListObj = [];
+        var recipesObj = {
+          title: obj.title,
+          servings: obj.servings,
+          image: obj.image,
+          vegetarian: obj.vegetarian,
+          aggregateLikes: obj.aggregateLikes,
+          spoonacularScore: obj.spoonacularScore,
+          sourceUrl: obj.sourceUrl,
+          readyInMinutes: obj.readyInMinutes,
+          UserId: 1
+        };
+        for (let i of obj.extendedIngredients) {
+          let iter = {
+            RecipeId: id,
+            name: i.name,
+            image: "https://spoonacular.com/cdn/ingredients_100x100/" + i.image,
+            original: i.original
+          };
+          ingredientsListObj.push(iter);
+        }
+        let nutritionObj = {
+          RecipeId: id,
+          calories: obj.nutrition.nutrients[0].amount,
+          fat: obj.nutrition.nutrients[1].amount,
+          carbs: obj.nutrition.nutrients[3].amount,
+          protein: obj.nutrition.nutrients[7].amount
+        };
+        for (let i in obj.analyzedInstructions[0].steps) {
+          let instructionsIter = {
+            RecipeId: id,
+            Number: obj.analyzedInstructions[0].steps[i].number,
+            Step: obj.analyzedInstructions[0].steps[i].step
+          };
+          instructionsListObj.push(instructionsIter);
+        }
+        res.render("show", {
+          recipesObj: recipesObj,
+          ingredientsListObj: ingredientsListObj,
+          nutritionObj: nutritionObj,
+          instructionsListObj: instructionsListObj
+        });
+      });
   });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {

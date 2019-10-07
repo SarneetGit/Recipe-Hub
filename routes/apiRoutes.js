@@ -145,6 +145,7 @@ module.exports = function(app) {
           spoonacularScore: obj.spoonacularScore,
           sourceUrl: obj.sourceUrl,
           readyInMinutes: obj.readyInMinutes,
+          apiId: obj.id,
           UserId: 1
         };
         for (let i of obj.extendedIngredients) {
@@ -207,6 +208,7 @@ module.exports = function(app) {
           spoonacularScore: obj.spoonacularScore,
           sourceUrl: obj.sourceUrl,
           readyInMinutes: obj.readyInMinutes,
+          apiId: obj.id,
           UserId: 1
         };
         db.Recipes.create(objToSendRecipes)

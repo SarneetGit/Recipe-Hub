@@ -39,6 +39,10 @@ module.exports = function(sequelize, DataTypes) {
     readyInMinutes: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    apiId: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     }
   });
   Recipes.associate = function(models) {
