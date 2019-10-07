@@ -13,10 +13,10 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Create</a>
+        <a class="nav-link" href="/create">Create</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Search</a>
+        <a class="nav-link" href="/search">Search</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -27,47 +27,51 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-default"
           aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="#">My Saved Recipes</a>
+          <a class="dropdown-item" href="/savedRecipes">My Saved Recipes</a>
           <a class="dropdown-item" href="#">Log Out</a>
         </div>
       </li>
     </ul>
   </div>
 </nav>
-<div class="containe">
+<!--/.Navbar -->
+<h1> My name is: {{name}}</h1>
+<div class="container">
     <div class="row" style="margin-bottom:10vh;">
-        {{#each recipes}}
-        <div class="col-lg-4 offset-4" style="padding:20px;">
+    {{#each recipes}}
+      <div class="col-lg-4" style="padding:20px;">
             <div class="card">
             <div class="view">
-                <img src="{{image}}" class="card-img-top" alt="photo">
-                <a href="{{sourceUrl}}" target="_blank">
+                <img src="{{Recipe.image}}" alt="Test" class="card-img-top" alt="photo">
+                <a href="{{Recipe.sourceUrl}}" alt="Test" target="_blank">
                 </a>
             </div>
             <div class="card-body">
-                <h4 class="card-title" style="color:black;">{{title}}</h4>
+                <h4 class="card-title" style="color:black;">{{Recipe.title}}</h4>
                 <small class="text-muted cat">
-                <i class="far fa-clock text-info"></i> {{readyInMinutes}} minutes
-                <i class="fas fa-users text-info"></i> {{servings}} portions
+                <i class="far fa-clock text-info"></i> {{Recipe.readyInMinutes}} minutes
+                <i class="fas fa-users text-info"></i> {{Recipe.servings}} portions
                 </small>
-                <p class="card-text text-center">  Calories:{{nutrition.calories}} | Carbohydrates:${nutrition.carbs}}    Fats:${nutrition.fat}} | Protein:${nutrition.protein}}</p>
+                <p class="card-text text-center">  Calories:{{calories}} | Carbohydrates:{{carbs}}    Fats: {{fat}} | Protein: {{protein}}</p>
                 <span>
-                    <a href="#" class="btn btn-info btn-md float-left">Instructions</a>
-                    <a href="#" class="btn btn-info btn-md float-right">Ingredients</a>
+                    <a href="show/{{Recipe.apiId}}" class="btn btn-info btn-md seeRecipe" data-id={{Recipe.apiId}}>See Full Recipe</a>
                 </span>
             </div>
             <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
                 <div class="views">  
                 </div>
                 <div class="stats">
-                <span class=""><i class="far fa-thumbs-up"></i> {{aggregateLikes}}</span>
-                <span class="${isVegetarian}}"><i class="fas fa-leaf"></i> Vegeterian</span>
+                <span class=""><i class="far fa-thumbs-up"></i> {{Recipe.aggregateLikes}}</span>
+                {{#if Recipe.isVegetarian}}
+                <span class=""><i class="fas fa-leaf"></i> Vegeterian</span>
+                {{else}}
+                {{/if}}
                 </div>
             </div>
-        </div>      
-    </div>
+        </div>         
+      </div>
+    {{/each}}   
 
     </div>
 </div>
-<!--/.Navbar -->
 

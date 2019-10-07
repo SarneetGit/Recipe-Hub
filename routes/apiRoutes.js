@@ -145,6 +145,7 @@ module.exports = function(app) {
           spoonacularScore: obj.spoonacularScore,
           sourceUrl: obj.sourceUrl,
           readyInMinutes: obj.readyInMinutes,
+          apiId: obj.id,
           UserId: 1
         };
         for (let i of obj.extendedIngredients) {
@@ -207,6 +208,7 @@ module.exports = function(app) {
           spoonacularScore: obj.spoonacularScore,
           sourceUrl: obj.sourceUrl,
           readyInMinutes: obj.readyInMinutes,
+          apiId: obj.id,
           UserId: 1
         };
         db.Recipes.create(objToSendRecipes)
@@ -266,7 +268,6 @@ module.exports = function(app) {
           });
       });
   });
-
   // If user clicks saved recipes tab, the page on load will do a get request
   //1) Get all saved recipes (for a given user)
   //2) Server side code will display a recipe card for each

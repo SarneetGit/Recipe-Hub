@@ -1,33 +1,84 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-light blue lighten-4" style="font-size: 150%;">
+  <a class="navbar-brand" href="#"><img id="logoImage" src="/images/pngLogo2.png" alt="Logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/create">Create</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/search">Search</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="/savedRecipes">My Saved Recipes</a>
+          <a class="dropdown-item" href="#">Log Out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar -->
+
+
+
+<div class="container" style="background-color;">
+  <div class="row align-items-center">
+    <div class="col-md-12 text-center">
+      <h1 class="display-1 font-weight-bold" style="font-family: Nunito; margin-top:5vh;">Search for Recipes:</h1>
+    </div>
+    </col-md-12>
+  </div>
+  <div class="row align-items-center" style="margin-top: 15vh; margin-bottom: 2.5vh;">
+    <div class="col-md-12">
+      <div id="cover">
+        <form method="get" action="">
+          <div class="tb">
+            <div class="td"><input type="text" id="search" placeholder="                      (っ˘ڡ˘ς)" required></div>
+            <div class="td" id="s-cover">
+              <button type="submit" id="submitBtn">
+                <div id="s-circle"></div>
+                <span></span>
+              </button>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
       </div>
     </div>
   </div>
-</div>
+  <div class="row">
+      <!-- Grid column -->
+      <div class="col-lg-4 col-md-6 offset-4 tenbyten" style="">
+        <!--Panel-->
+        <div class="card d-none" style="color:black;" id="resultsCard">
+          <h3 class="card-header light-blue lighten-1 white-text text-uppercase font-weight-bold text-center py-5" style="font-family: Nunito;">Try one of these Recipes:</h3>
+          <div class="card-body">
+            <ul class="list-group" id="searchResultAppend">
+            </ul>
+            <p class="text-small text-muted mb-0 pt-3">* For more details, select a recipe name that seems extra delicious.</p>
+          </div>
+        </div>
+        <!--/.Panel-->
+      </div>
+      <!-- Grid column -->
+  </div>
+        <!-- Grid row -->
+  
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+</div>
