@@ -1,11 +1,9 @@
 body{
   background-color: transparent;
 }
+
 .list-group-item {
   line-height: 2.5;
-}
-.text {
-  color: black;
 }
 
 html {
@@ -19,13 +17,6 @@ html {
   width: 100%;
 }
 
-/* body {
-  background-image: url("../images/");
-  width: 100%;
-  height: 100%;
-  background-repeat: no-repeat;
-} */
-
 .text-align {
   text-align: left;
 }
@@ -34,6 +25,7 @@ img {
   opacity: 0.5;
   filter: alpha(opacity=50); /* For IE8 and earlier */
 }
+
 .checkBox {
   width: 40px;
   height: 40px;
